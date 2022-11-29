@@ -163,12 +163,14 @@ const weaponsArray = [{name: "rope",weight: 10},
                     { name: "trophy", weight: 25},
                     {name: "pistol", weight: 20}];
                     
-                    function randomSelector(charactersArray)
-                    {
-                      
-                    return charactersArray[Math.floor(Math.random()*charactersArray.length)];
-                         
-                    };
+export function randomSelector(charactersArray){
+    return charactersArray[Math.floor(Math.random()*charactersArray.length)];
+        };
+    
+export function pickMistery(randomSelector){
+
+}
+
 
 export default {
 
