@@ -1,4 +1,7 @@
-import * as clue from "../src/clue.js";
+//clue.spec.js
+
+import clue from "../src/clue.js";
+import {jest} from "@jest/globals";
 
 
 
@@ -22,62 +25,62 @@ describe('Find a random element of the array - randomSelector', function () {
   it('Should return an element of the array', function () {
     var array = ['ab', 'zz', 'zx', 'zy'];
 
-    expect(array.indexOf(randomSelector(array))).toBeGreaterThan(-1);
+    expect(array.indexOf(clue.randomSelector(array))).toBeGreaterThan(-1);
   });
 
   it('Return a random element of the array', function () {
-    var spy = spyOn(Math, 'random').and.returnValue(0.5);
+    var spy = jest.spyOn(Math, 'random').mockReturnValue(0.5);
 
-    expect(randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('aab');
-    spy.and.returnValue(0.1);
+    expect(clue.randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('aab');
+    spy.mockReturnValue(0.1);
 
-    expect(randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('a');
-    spy.and.returnValue(0.9);
+    expect(clue.randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('a');
+    spy.mockReturnValue(0.9);
 
-    expect(randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('kas');
+    expect(clue.randomSelector(['a', 'ab', 'abb', 'aab', 'aaa', 'sda', 'kas'])).toEqual('kas');
   });
 });
 
 describe('Pick a random mistery - pickMistery', function () {
   it('Defines pickMistery', function () {
-    expect(typeof pickMistery).toBe('function');
+    expect(typeof clue.pickMistery).toBe('function');
   });
 
   it('Return an array', function () {
-    expect(typeof pickMistery()).toEqual('object');
+    expect(typeof clue.pickMistery()).toEqual('object');
   });
 
   it('Return a non empty array', function () {
-    expect(pickMistery().length).toBeGreaterThan(0);
+    expect(clue.pickMistery().length).toBeGreaterThan(0);
   });
 
   it('Return an array with 3 elements', function () {
-    expect(pickMistery().length).toEqual(3);
+    expect(clue.pickMistery().length).toEqual(3);
   });
 
   it('Return a killer on the first index of the array', function () {
-    expect(charactersArray.indexOf(pickMistery()[0])).toBeGreaterThan(-1);
+    expect(clue.charactersArray.indexOf(clue.pickMistery()[0])).toBeGreaterThan(-1);
   });
 
   it('Return a weapon on the second index of the array', function () {
-    expect(weaponsArray.indexOf(pickMistery()[1])).toBeGreaterThan(-1);
+    expect(clue.weaponsArray.indexOf(clue.pickMistery()[1])).toBeGreaterThan(-1);
   });
 
   it('Return a room in the third index of the array', function () {
-    expect(roomsArray.indexOf(pickMistery()[2])).toBeGreaterThan(-1);
+    expect(clue.roomsArray.indexOf(clue.pickMistery()[2])).toBeGreaterThan(-1);
   });
 });
 
 describe('Reveal the mistery - revealMistery', function () {
   it('Defines revealMistery', function () {
-    expect(typeof revealMistery).toBe('function');
+    expect(typeof clue.revealMistery).toBe('function');
   });
 
-  it('Return an array', function () {
-    expect(typeof revealMistery([{ first_name: 'aa', last_name: 'abc' }, { name: 'abd' }, { name: 'abb' }])).toEqual('string');
+  it('Return an string', function () {
+    expect(typeof clue.revealMistery([{ first_name: 'aa', last_name: 'abc' }, { name: 'abd' }, { name: 'abb' }])).toEqual('string');
   });
 
   it('Return <FIRST NAME> <LAST NAME> killed Mr.Boddy using the <WEAPON> in the <PLACE>!!!!', function () {
-    expect(revealMistery([{ first_name: 'Victor', last_name: 'Plum' }, { name: 'poison' }, { name: 'Billiard Room' }])).toEqual('Victor Plum killed Mr.Boddy using the poison in the Billiard Room!!!!');
+    expect(clue.revealMistery([{ first_name: 'Victor', last_name: 'Plum' }, { name: 'poison' }, { name: 'Billiard Room' }])).toEqual('Victor Plum killed Mr.Boddy using the poison in the Billiard Room!!!!');
   });
 });
